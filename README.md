@@ -67,7 +67,7 @@ reporting experimental results in Task 4 for details.
 </details>
 
 <details id=4>
-<summary><h2>Task 4: Compare DBMS with File I/O (Basics:20%)</h2></summary>
+<summary><h2>Task 4-1: Compare DBMS with File I/O (Basic:20%)</h2></summary>
 
 ### **Target:**
 - [ ] Benchmarking with database APIs
@@ -118,7 +118,6 @@ operation type (type-level).
 a. Hardware specification, including the CPU model, size of memory,
 whether you are using a solid-state disk (SSD) or hard disk drive
 (HDD), how fast your disk is (sequential and random).
-7 / 8
 b. Software specification, including the version of your DBMS and
 operating system, the programming language you choose, and the
 development environment (the version of the language, the specific
@@ -165,7 +164,7 @@ c. Characteristics and benefits of a database
 </details>
 
 <details id=5>
-
+<summary><h2>Task 4-2: Compare DBMS with File I/O (Advanced:15%)</h2></summary>
 1. If SUSTC wishes to figure out which containers have serviced (the time
 that the container being on a ship) for several years (depending on type)
 to inform the ports to perform maintenance, can your database deal
