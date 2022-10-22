@@ -165,23 +165,28 @@ c. Characteristics and benefits of a database
 
 <details id=5>
 <summary><h2>Task 4-2: Compare DBMS with File I/O (Advanced:15%)</h2></summary>
+
 1. If SUSTC wishes to figure out which containers have serviced (the time
 that the container being on a ship) for several years (depending on type)
 to inform the ports to perform maintenance, can your database deal
 with such problem? How about your file I/O program? If so, which will
 perform well? If not, why?
+
 2. Can you identify the retrieval and delivery couriers who collect/send
 the greatest number of items for each company in each city through
 your database? How about your file I/O program? If so, which will
 perform well? If not, why?
+
 3. If a company have different type of items (for example, half of the “Item
 Class” columns’ distinct values) that will be exported, which cities it
 shall choose respectively to reach the minimal overall export cost? Can
 your database deal with such problem? How about your file I/O
 program? If so, which will perform well?
+
 4. Can your database deal with high concurrency? You may try to perform
 the above benchmarks in a higher order of magnitude, such as hundreds
 of thousands of selections.
+
 5. Can you compare the performance with different database software
 (e.g., MySQL, MariaDB, SQLite), file systems, disk performance and
 type, programming languages, libraries, or operating systems?
