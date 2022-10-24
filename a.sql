@@ -1,66 +1,76 @@
 create table item(
-    name varchar primary key ,
-    type varchar,
+    name varchar(80) primary key ,
+    type varchar(80),
     price int,
-    Export_tax int,
-    Export_time time,
-    Retrieval_start_time time,
-    Delivery_finished_time time,
-    Import_tax int,
-    Import_time time,
     Log_time time,
-    Import_city varchar,
-    Export_city varchar,
-    retrieval_city varchar,
-    deliver_city varchar,
-    container varchar,
-    retrieval_courier int,
-    deliver_courier int,
-    foreign key (Import_city)
-                 references city(name),
-    foreign key (Export_city)
-                 references city(name),
-    foreign key (retrieval_city)
-                 references city(name),
-    foreign key (deliver_city)
-                 references city(name),
-    foreign key (container)
-                 references contaners(code),
-    foreign key (retrieval_courier)
-                 references courier(phone_number),
-    foreign key (deliver_courier)
-                 references courier(phone_number)
+    containers varchar(80),
+    foreign key (containers)
+        references containers(code)
 );
 
-create table city(
-    name varchar primary key
+create table containers(
+    code varchar(80) primary key ,
+    type varchar(80)
 );
 
-create table contaners(
-    code int primary key ,
-    type varchar
+create table City(
+    name varchar(80)
 );
 
 create table courier(
-    phone_number int primary key ,
-    name varchar ,
-    gender varchar,
+    name varchar(80) primary key ,
+    phone_number varchar(80),
     age int,
-    city varchar,
-    company varchar,
+    gender varchar(80),
+    company varchar(80),
+    city varchar(80),
     foreign key (city)
-                    references city(name),
+        references City(name),
     foreign key (company)
-                    references company(name)
-);
-
-create table ship(
-    name varchar primary key ,
-    company varchar,
-    foreign key (company)
-                 references company(name)
+        references company(name)
 );
 
 create table company(
-    name varchar primary key
+    name varchar(80) primary key
+);
+
+create table ship(
+    name varchar(80) primary key ,
+    company varchar(80),
+    foreign key (company)
+        references company(name)
+);
+
+create table import(
+    item varchar(80) primary key ,
+    city varchar(80),
+    time time,
+    tax int,
+    foreign key (item) references item(name),
+    foreign key (city) references City(name)
+);
+
+create table export(
+    item varchar(80) primary key ,
+    city varchar(80),
+    time time,
+    tax int,
+    foreign key (item) references item(name),
+    foreign key (city) references City(name)
+);
+
+create table retrieval(
+    item varchar(80) primary key ,
+    courier varchar(80),
+    Start_time time,
+    foreign key (item) references item(name),
+    foreign key (courier) references courier(name)
+);
+
+create table develiver(
+    item varchar(80) primary key ,
+    courier varchar(80),
+    Finish_time time,
+    foreign key (item) references item(name),
+    foreign key (courier) references courier(name)
 );
