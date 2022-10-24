@@ -2,7 +2,7 @@ create table item(
     name varchar(80) primary key ,
     type varchar(80),
     price int,
-    Log_time timestamp,
+    logTime timestamp,
     containers varchar(80),
     foreign key (containers)
         references containers(code)
@@ -19,8 +19,8 @@ create table City(
 
 create table courier(
     name varchar(80) not null ,
-    phone_number varchar(80) not null ,
-    primary key (name,phone_number),
+    phoneNumber varchar(80) not null ,
+    primary key (name,phoneNumber),
     age int,
     gender varchar(80),
     company varchar(80),
@@ -66,7 +66,7 @@ create table retrieval(
     item varchar(80) ,
     courier varchar(80),
     primary key (item,courier),
-    Start_time date,
+    startTime date,
     foreign key (item) references item(name),
     foreign key (courier) references courier(name)
 );
@@ -75,7 +75,7 @@ create table delivery(
     item varchar(80) ,
     courier varchar(80),
     primary key (item,courier),
-    Finish_time date,
+    finishTime date,
     foreign key (item) references item(name),
     foreign key (courier) references courier(name)
 );
