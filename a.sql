@@ -1,23 +1,26 @@
-create table item(
+create table if not exists containers(
+    code varchar(80) primary key ,
+    type varchar(80)
+) ;
+
+create table if not exists City(
+    name varchar(80) primary key
+);
+
+create table if not exists company(
+    name varchar(80) primary key
+);
+
+create table if not exists item(
     name varchar(80) primary key ,
     type varchar(80),
     price int,
     logTime timestamp,
     containers varchar(80),
-    foreign key (containers)
-        references containers(code)
+    foreign key (containers) references containers(code)
 );
 
-create table containers(
-    code varchar(80) primary key ,
-    type varchar(80)
-);
-
-create table City(
-    name varchar(80)
-);
-
-create table courier(
+create table if not exists courier(
     name varchar(80) not null ,
     phoneNumber varchar(80) not null ,
     primary key (name,phoneNumber),
@@ -25,24 +28,17 @@ create table courier(
     gender varchar(80),
     company varchar(80),
     city varchar(80),
-    foreign key (city)
-        references City(name),
-    foreign key (company)
-        references company(name)
+    foreign key (city) references City(name),
+    foreign key (company) references company(name)
 );
 
-create table company(
-    name varchar(80) primary key
-);
-
-create table ship(
+create table if not exists ship(
     name varchar(80) primary key ,
     company varchar(80),
-    foreign key (company)
-        references company(name)
+    foreign key (company) references company(name)
 );
 
-create table import(
+create table if not exists import(
     item varchar(80) ,
     city varchar(80),
     primary key (item,city),
@@ -52,7 +48,7 @@ create table import(
     foreign key (city) references City(name)
 );
 
-create table export(
+create table if not exists export(
     item varchar(80) ,
     city varchar(80),
     primary key (item,city),
@@ -62,20 +58,26 @@ create table export(
     foreign key (city) references City(name)
 );
 
-create table retrieval(
+create table if not exists retrieval(
     item varchar(80) ,
     courier varchar(80),
-    primary key (item,courier),
+    courierPhoneNumber varchar(80),
+    primary key (item,courier,courierPhoneNumber),
+    city varchar(80),
     startTime date,
     foreign key (item) references item(name),
-    foreign key (courier) references courier(name)
+    foreign key (courier,courierPhoneNumber) references courier(name,phoneNumber),
+    foreign key (city) references city(name)
 );
 
-create table delivery(
+create table if not exists delivery(
     item varchar(80) ,
     courier varchar(80),
-    primary key (item,courier),
+    courierPhoneNumber varchar(80),
+    primary key (item,courier,courierPhoneNumber),
+    city varchar(80),
     finishTime date,
     foreign key (item) references item(name),
-    foreign key (courier) references courier(name)
+    foreign key (courier,courierPhoneNumber) references courier(name,phoneNumber),
+    foreign key (city) references city(name)
 );
