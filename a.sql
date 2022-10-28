@@ -4,7 +4,7 @@ create table if not exists containers(
 ) ;
 
 create table if not exists City(
-    name varchar(80)
+    name varchar(80) primary key
 );
 
 create table if not exists company(
@@ -61,17 +61,23 @@ create table if not exists export(
 create table if not exists retrieval(
     item varchar(80) ,
     courier varchar(80),
-    primary key (item,courier),
+    courierPhoneNumber varchar(80),
+    primary key (item,courier,courierPhoneNumber),
+    city varchar(80),
     startTime date,
     foreign key (item) references item(name),
-    foreign key (courier) references courier(name)
+    foreign key (courier,courierPhoneNumber) references courier(name,phoneNumber),
+    foreign key (city) references city(name)
 );
 
 create table if not exists delivery(
     item varchar(80) ,
     courier varchar(80),
-    primary key (item,courier),
+    courierPhoneNumber varchar(80),
+    primary key (item,courier,courierPhoneNumber),
+    city varchar(80),
     finishTime date,
     foreign key (item) references item(name),
-    foreign key (courier) references courier(name)
+    foreign key (courier,courierPhoneNumber) references courier(name,phoneNumber),
+    foreign key (city) references city(name)
 );
